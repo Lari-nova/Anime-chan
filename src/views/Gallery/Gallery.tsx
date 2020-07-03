@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import firebase from "firebase";
-import logo from '../../logo.svg';
 import '../../App.css';
 import styled from "styled-components";
 import CardTypes from "../../components/CardTypes";
@@ -31,19 +30,14 @@ const Gallery = () => {
 
 		response[IMAGE_TYP].docs.forEach((dataType) => {
 			const filteredImage: QueryDocumentSnapshot[] = response[IMAGE].docs.filter((dataImg) => {
-
 				if(dataType.data().type === dataImg.data().img_type) {
 					return  dataImg
 				}
-
 			});
 
 			images.push(filteredImage)
-
 		});
-
-		setImages(images);
-
+		setImages(images.concat(images).concat(images).concat(images));
 	};
 
 	useEffect(() => {
@@ -60,33 +54,31 @@ const Gallery = () => {
 	const renderBody = () => {
 		if (imagesList) {
 			return imagesList.map((imageArray) => (
-				<CardTypes url={imageArray[0].data().url} type={imageArray[0].data().img_type} handleClick={(type) => {
-					alert(type);
-				}}/>
+				<CardContainer>
+					<CardTypes url={imageArray[0].data().url} type={imageArray[0].data().img_type} handleClick={(type) => {
+						alert(type);
+					}}/>
+				</CardContainer>
 			))
 		}
-
 		return null;
 	};
 
 	return (
 		<MainComponent>
 			<ScrollView>
-				{renderBody()}
+				<Row>
+					{renderBody()}
+				</Row>
 			</ScrollView>
 		</MainComponent>
 	);
 };
 
-
-
 const MainComponent = styled.div`
   height: 100vh;
   width: 100vw;
   background: #61dafb;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
 const ScrollView = styled.div`
@@ -98,5 +90,19 @@ const ScrollView = styled.div`
   align-items: center; 
   flex-direction: column;
 `;
+
+const Row = styled.div`
+	width: 1400px;
+  display: grid;
+  grid-template-columns: repeat(3, 33.3%);
+  @media (max-width: 1400px) { 
+  	width: 100%;
+  }
+`;
+
+const CardContainer = styled.div`
+	padding: 10px;
+`;
+
 
 export default Gallery;

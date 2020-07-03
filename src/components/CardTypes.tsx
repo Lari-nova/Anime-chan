@@ -8,6 +8,7 @@ interface Props {
 }
 
 const CardTypes = ({ url, type, handleClick }: Props) => {
+
 	return(
 		<CardStyle onClick={() => handleClick(type)}>
 			<ImageStyle imgUrl={url} />
@@ -15,9 +16,8 @@ const CardTypes = ({ url, type, handleClick }: Props) => {
 	)
 };
 const CardStyle = styled.div`
-  min-height: 200px;
-  width: 400px;
-  margin: 5px;
+  width: 100%;
+ 	height: 200px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   border-radius: 8px;
   overflow: hidden;
@@ -25,17 +25,18 @@ const CardStyle = styled.div`
   &:hover {
      box-shadow: 0 0 15px rgba(0, 0, 0, 1);
   }
+  object-fit: cover;
 `;
 
 const ImageStyle = styled.img<{imgUrl: string}>`
-  height: 200px;
-  width: 400px;
-  background: url(${props => props.imgUrl});
+ 	width: 100%;
+ 	height: 100%;
+  background: url(${props => props.imgUrl}) no-repeat center center;
+  transform: scale(1.01);
   transition: transform 1s ease;
     &:hover {
     transform: scale(1.1);
   }
-  object-fit: cover;
 `;
 
 export default CardTypes;
