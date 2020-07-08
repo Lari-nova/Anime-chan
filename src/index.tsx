@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import Gallery from "./views/Gallery/Gallery";
+import GalleryController from "./views/Gallery/GalleryController";
+import App from "./components/App";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Gallery />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

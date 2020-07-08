@@ -31,7 +31,8 @@ const CardStyle = styled.div`
 const ImageStyle = styled.img<{imgUrl: string}>`
  	width: 100%;
  	height: 100%;
-  background: url(${props => props.imgUrl}) no-repeat center center;
+  background: url(${props => props.imgUrl})no-repeat center center;
+  background-size: cover;
   transform: scale(1.01);
   transition: transform 1s ease;
     &:hover {

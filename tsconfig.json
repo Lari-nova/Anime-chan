@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "outDir": "./dist/",
+    "target": "es6",
     "lib": [
       "dom",
       "dom.iterable",
@@ -15,8 +18,8 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "removeComments": true,
     "isolatedModules": true,
-    "noEmit": true,
     "jsx": "react"
   },
   "include": [
