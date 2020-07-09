@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {DocumentData, QueryDocumentSnapshot, QuerySnapshot} from "@firebase/firestore-types";
 import GalleryView from "./GalleryView";
 import { firestore } from '../../components/App';
+import GalleryViewMemo from "./GalleryView";
 
 const IMAGE_TYP = 1;
 const IMAGE = 0;
@@ -37,7 +38,7 @@ const GalleryController = () => {
 	}, []);
 
 	return (
-		<GalleryView imagesList={imagesList} onTypeClick={alert}/>
+		<GalleryViewMemo imagesList={imagesList} onTypeClick={alert}/>
 	);
 };
 

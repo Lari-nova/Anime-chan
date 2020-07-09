@@ -15,7 +15,7 @@ module.exports = {
   },
   watchOptions: {
     aggregateTimeout: 200,
-    poll: 1000
+    poll: 500
   },
   module: {
     rules: [
@@ -29,7 +29,7 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(png|jpe?g|gif|ico)$/i,
+        test: /\.(png|jpe?g|gif|ico|svg)$/i,
         use: [
           {
             loader: 'file-loader',

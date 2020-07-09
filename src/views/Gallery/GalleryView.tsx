@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
-import image from "../../../assets/galleryBackground.png";
 import CardTypes from "../../components/CardTypes";
 import {QueryDocumentSnapshot} from "@firebase/firestore-types";
 
@@ -11,9 +10,9 @@ interface Props {
 
 const GalleryView = ({imagesList, onTypeClick}: Props) => {
 
-	const renderBody = () => {
-		if (imagesList) {
-			return imagesList.map((imageArray) => (
+	const renderBody = (images: QueryDocumentSnapshot[][] | undefined) => {
+		if (images) {
+			return images.map((imageArray) => (
 				<CardContainer>
 					<CardTypes url={imageArray[0].data().url} type={imageArray[0].data().img_type} handleClick={(type) => {
 						alert(type);
@@ -24,12 +23,14 @@ const GalleryView = ({imagesList, onTypeClick}: Props) => {
 		return null;
 	};
 
+	const memoizedValue = useMemo(() => renderBody(imagesList), [imagesList]);
+
 	return(
-			<ScrollView>
-				<Row>
-					{renderBody()}
-				</Row>
-			</ScrollView>
+		<ScrollView>
+			<Row>
+				{memoizedValue}
+			</Row>
+		</ScrollView>
 	);
 };
 
@@ -56,5 +57,9 @@ const CardContainer = styled.div`
 	padding: 10px;
 `;
 
-export default GalleryView;
+const GalleryViewMemo = React.memo((props: Props) =>
+	<GalleryView imagesList={props.imagesList} onTypeClick={props.onTypeClick} />
+);
+
+export default GalleryViewMemo;
 
