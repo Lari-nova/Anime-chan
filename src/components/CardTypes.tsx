@@ -8,7 +8,6 @@ interface Props {
 }
 
 const CardTypes = ({ url, type, handleClick }: Props) => {
-
 	return(
 		<CardStyle onClick={() => handleClick(type)}>
 			<ImageStyle imgUrl={url} />
@@ -26,6 +25,7 @@ const CardStyle = styled.div`
      box-shadow: 0 0 15px rgba(0, 0, 0, 1);
   }
   object-fit: cover;
+  cursor: pointer;
 `;
 
 const ImageStyle = styled.img<{imgUrl: string}>`

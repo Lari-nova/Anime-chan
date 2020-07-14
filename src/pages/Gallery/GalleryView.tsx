@@ -1,20 +1,20 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
 import CardTypes from "../../components/CardTypes";
-import {QueryDocumentSnapshot} from "@firebase/firestore-types";
+import { QueryDocumentSnapshot } from "@firebase/firestore-types";
 
 interface Props {
-	imagesList: QueryDocumentSnapshot[][] | undefined,
+	imagesList: Array<QueryDocumentSnapshot> | undefined,
 	onTypeClick: (type: string) => void,
 }
 
 const GalleryView = ({imagesList, onTypeClick}: Props) => {
 
-	const renderBody = (images: QueryDocumentSnapshot[][] | undefined) => {
-		if (images) {
-			return images.map((imageArray) => (
-				<CardContainer>
-					<CardTypes url={imageArray[0].data().url} type={imageArray[0].data().img_type} handleClick={(type) => {
+	const renderBody = (images: Array<QueryDocumentSnapshot> | undefined) => {
+		if (images != undefined) {
+			return images.map((querySnapshot) => (
+				<CardContainer key={querySnapshot.data().img_url}>
+					<CardTypes url={querySnapshot.data().img_url} type={querySnapshot.data().type} handleClick={(type) => {
 						alert(type);
 					}}/>
 				</CardContainer>

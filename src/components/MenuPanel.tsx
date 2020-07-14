@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import {useHistory, Switch, Route, Link } from "react-router-dom";
-import home from "../../assets/home.svg";
-import favorite from "../../assets/star.svg";
-import gallery from "../../assets/art.svg";
-import Home from "../views/Home";
-import GalleryController from "../views/Gallery/GalleryController";
-import Favorites from "../views/Favorites";
-
+import { useHistory, Switch, Route } from "react-router-dom";
+import favorite from "../../assets/stars.svg";
+import gallery from "../../assets/gallery.svg";
+import next from "../../assets/next.svg";
+import female from "../../assets/venus.svg";
+import male from "../../assets/mars.svg";
+import heart from "../../assets/heart.svg"
+import GalleryController from "../pages/Gallery/GalleryController";
+import FavoritesView from "../pages/Favorites/FavoritesView";
+import MaleController from "../pages/Kind/MaleController";
+import FemaleController from "../pages/Kind/FemaleController";
+import PairingsController from "../pages/Kind/PairingsController";
 
 const MenuPanel = () => {
 
 	const { push } = useHistory();
 	const [isOpen, setOpen] = useState(false);
-	console.log(process.env.NODE_ENV);
 	const onPressButton = () => {
 		setOpen((prevState) => !prevState);
 	};
@@ -21,43 +24,55 @@ const MenuPanel = () => {
 	return(
 		<Container>
 			<LeftPanel open={isOpen}>
-				<div style={{
-					height: 400
-				}}>
-					<IconButton url={home} onClick={() => push("/")}>Home Page</IconButton>
-					<IconButton url={gallery} onClick={() => push("/gallery")}>Gallery</IconButton>
-					<IconButton url={favorite}  onClick={() => push("/favorites")}>Favorites</IconButton>
+				<div style={{ position: 'absolute', top: 0 }}>
+					<IconContainer>
+						<IconButton url={gallery} onClick={() => push("/gallery")} />
+						<Title>Gallery</Title>
+					</IconContainer>
+					<IconContainer>
+						<IconButton url={female} onClick={() => push("/female")} />
+						<Title>Female</Title>
+					</IconContainer>
+					<IconContainer>
+						<IconButton url={male} onClick={() => push("/male")} />
+						<Title>Male</Title>
+					</IconContainer>
+					<IconContainer>
+						<IconButton url={heart} onClick={() => push("/pairings")} />
+						<Title>Pairings</Title>
+					</IconContainer>
+					<IconContainer>
+						<IconButton url={favorite} onClick={() => push("/favorites")} />
+						<Title>Favorites</Title>
+					</IconContainer>
 				</div>
-
-				<ButtonContainer>
-					<Button onClick={onPressButton} />
-				</ButtonContainer>
+					<ButtonContainer>
+						<Button open={isOpen} url={next} onClick={onPressButton} />
+					</ButtonContainer>
 			</LeftPanel>
 			<Switch>
 				<Route exact path="/">
-					<Home />
+					<GalleryController />
 				</Route>
 				<Route path="/gallery">
 					<GalleryController />
 				</Route>
+				<Route exact path="/female">
+					<FemaleController />
+				</Route>
+				<Route exact path="/male">
+					<MaleController />
+				</Route>
+				<Route exact path="/pairings">
+					<PairingsController />
+				</Route>
 				<Route path="/favorites">
-					<Favorites />
+					<FavoritesView />
 				</Route>
 			</Switch>
 		</Container>
 	);
 };
-
-const IconButton = styled.div<{ url: string }>`
-	width: 110px;
-  height: 50px;
-  background: url(${props => props.url}) no-repeat left;
-`;
-
-const Icon = styled.img`
-	width: 100px;
-  height: 40px;
-`;
 
 const Container = styled.div`
   display: flex;
@@ -69,14 +84,38 @@ const Container = styled.div`
 const LeftPanel = styled.div<{open: boolean}>`
   max-height: 100vh;
   background-color: #282c34;
-  width: 130px;
+  width: 50px;
   transition: width 0.3s;
 	display: flex;
   flex-direction: column;
   position: fixed;
   z-index: 1;
-  overflow: hidden;
-  ${props => props.open ? css`width: 200px;` : css`width: 130px;`}
+  overflow-x: hidden;
+  ${props => props.open ? css`width: 180px;` : css`width: 50px;`}
+`;
+
+const IconContainer = styled.div`
+	height: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  font-size: 28px;
+  margin: 15px 5px;
+`;
+
+const IconButton = styled.div<{ url: string }>`
+	width: 30px;
+  height: 30px;
+  border: none;
+  margin-left: 5px;
+  align-self: center;
+  cursor: pointer;
+  background: url(${props => props.url}) no-repeat left;
+`;
+
+const Title = styled.p`
+	align-self: center;
+	margin-left: 10px;
 `;
 
 const ButtonContainer = styled.div`
@@ -85,18 +124,19 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
-  background-color: antiquewhite;
   align-self: flex-end;
   padding-bottom: 30px;
+	cursor: pointer;
 `;
 
-const Button = styled.div`
-  width: 100px;
+const Button = styled.div<{ url: string, open: boolean }>`
+	width: 40px;
   height: 40px;
-  background-color: lightgray;
-  :hover {
-    background-color: darkgray;
-  }
+  background: url(${props => props.url}) no-repeat left;
+  ${props => props.open && css`transform: scaleX(-1);`};
+  transition: 0.3s;
+  align-self: flex-end;
+ 	margin-right: 3px;
 `;
 
 export default MenuPanel;
