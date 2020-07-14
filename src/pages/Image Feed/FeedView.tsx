@@ -4,10 +4,12 @@ import { QueryDocumentSnapshot } from "@firebase/firestore-types";
 import Cards from "../../components/Cards";
 
 interface Props {
-	urlList: Array<QueryDocumentSnapshot> | undefined,
+	documentList: Array<QueryDocumentSnapshot> | undefined,
+	onEndPage: () => void,
+
 }
 
-const GenderView = ({urlList}: Props) => {
+const FeedView = ({documentList, onEndPage}: Props) => {
 
 	const renderBody = (images: Array<QueryDocumentSnapshot> | undefined) => {
 		if (images != undefined) {
@@ -19,10 +21,16 @@ const GenderView = ({urlList}: Props) => {
 		}
 		return null;
 	};
+	const onHandleScroll = (e: React.UIEvent<HTMLElement>) => {
+		const event = e.target as HTMLElement;
+		if (event.scrollHeight - event.scrollTop === event.clientHeight) {
+			onEndPage();
+		}
+	};
 
 	return(
-		<ScrollView>
-			{renderBody(urlList)}
+		<ScrollView onScroll={onHandleScroll}>
+			{renderBody(documentList)}
 		</ScrollView>
 	);
 };
@@ -41,4 +49,4 @@ const CardContainer = styled.div`
 	padding: 30px;
 `;
 
-export default GenderView;
+export default FeedView;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { firestore } from "../../components/App";
 import { QueryDocumentSnapshot } from "@firebase/firestore-types";
-import GenderView from "./GenderView";
+import KindView from "./KindView";
 
 const MaleController = () => {
 
@@ -15,7 +15,7 @@ const MaleController = () => {
 	}, []);
 
 	return(
-		<GenderView urlList={urlsList}/>
+		<KindView urlList={urlsList}/>
 	)
 };
 

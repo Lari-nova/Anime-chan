@@ -12,6 +12,7 @@ import FavoritesView from "../pages/Favorites/FavoritesView";
 import MaleController from "../pages/Kind/MaleController";
 import FemaleController from "../pages/Kind/FemaleController";
 import PairingsController from "../pages/Kind/PairingsController";
+import FeedController from "../pages/Image Feed/FeedController";
 
 const MenuPanel = () => {
 
@@ -25,6 +26,10 @@ const MenuPanel = () => {
 		<Container>
 			<LeftPanel open={isOpen}>
 				<div style={{ position: 'absolute', top: 0 }}>
+					<IconContainer>
+						<IconButton url={gallery} onClick={() => push("/")} />
+						<Title>Feed</Title>
+					</IconContainer>
 					<IconContainer>
 						<IconButton url={gallery} onClick={() => push("/gallery")} />
 						<Title>Gallery</Title>
@@ -52,7 +57,7 @@ const MenuPanel = () => {
 			</LeftPanel>
 			<Switch>
 				<Route exact path="/">
-					<GalleryController />
+					<FeedController />
 				</Route>
 				<Route path="/gallery">
 					<GalleryController />
