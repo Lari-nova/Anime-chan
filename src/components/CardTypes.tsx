@@ -36,7 +36,7 @@ const ImageStyle = styled.img<{imgUrl: string}>`
   transform: scale(1.01);
   transition: transform 1s ease;
     &:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 `;
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import { useHistory, Switch, Route } from "react-router-dom";
+import home from "../../assets/home.svg";
 import favorite from "../../assets/stars.svg";
 import gallery from "../../assets/gallery.svg";
 import next from "../../assets/next.svg";
@@ -12,7 +13,7 @@ import FavoritesView from "../pages/Favorites/FavoritesView";
 import MaleController from "../pages/Kind/MaleController";
 import FemaleController from "../pages/Kind/FemaleController";
 import PairingsController from "../pages/Kind/PairingsController";
-import FeedController from "../pages/Image Feed/FeedController";
+import FeedController from "../pages/ImageFeed/FeedController";
 
 const MenuPanel = () => {
 
@@ -27,8 +28,8 @@ const MenuPanel = () => {
 			<LeftPanel open={isOpen}>
 				<div style={{ position: 'absolute', top: 0 }}>
 					<IconContainer>
-						<IconButton url={gallery} onClick={() => push("/")} />
-						<Title>Feed</Title>
+						<IconButton url={home} onClick={() => push("/")} />
+						<Title>Home</Title>
 					</IconContainer>
 					<IconContainer>
 						<IconButton url={gallery} onClick={() => push("/gallery")} />

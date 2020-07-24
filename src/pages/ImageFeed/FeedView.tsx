@@ -14,9 +14,7 @@ const FeedView = ({documentList, onEndPage}: Props) => {
 	const renderBody = (images: Array<QueryDocumentSnapshot> | undefined) => {
 		if (images != undefined) {
 			return images.map((querySnapshot) => (
-				<CardContainer key={querySnapshot.data().url}>
-					<Cards url={querySnapshot.data().url}/>
-				</CardContainer>
+					<Cards url={querySnapshot.data().url} style={{marginTop: 10}}/>
 			))
 		}
 		return null;
@@ -30,13 +28,14 @@ const FeedView = ({documentList, onEndPage}: Props) => {
 
 	return(
 		<ScrollView onScroll={onHandleScroll}>
-			{renderBody(documentList)}
+			<CardContainer>
+				{renderBody(documentList)}
+			</CardContainer>
 		</ScrollView>
 	);
 };
 
 const ScrollView = styled.div`
-	margin: 0 auto;
   height: 100vh;
   width: 100vw;
   overflow: auto;
@@ -46,7 +45,10 @@ const ScrollView = styled.div`
 `;
 
 const CardContainer = styled.div`
-	padding: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 25px;
+  grid-auto-rows: auto;
 `;
 
 export default FeedView;
