@@ -10,10 +10,10 @@ import male from "../../assets/mars.svg";
 import heart from "../../assets/heart.svg"
 import GalleryController from "../pages/Gallery/GalleryController";
 import FavoritesView from "../pages/Favorites/FavoritesView";
-import MaleController from "../pages/Kind/MaleController";
-import FemaleController from "../pages/Kind/FemaleController";
-import PairingsController from "../pages/Kind/PairingsController";
+import Male from "../pages/Kind/Male";
+import Pairings from "../pages/Kind/Pairings";
 import FeedController from "../pages/ImageFeed/FeedController";
+import Female from "../pages/Kind/Female";
 
 const MenuPanel = () => {
 
@@ -64,13 +64,13 @@ const MenuPanel = () => {
 					<GalleryController />
 				</Route>
 				<Route exact path="/female">
-					<FemaleController />
+					<Female />
 				</Route>
 				<Route exact path="/male">
-					<MaleController />
+					<Male />
 				</Route>
 				<Route exact path="/pairings">
-					<PairingsController />
+					<Pairings />
 				</Route>
 				<Route path="/favorites">
 					<FavoritesView />

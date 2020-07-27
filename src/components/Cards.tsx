@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 interface Props {
 	url: string,
-	style: React.CSSProperties,
+	style?: React.CSSProperties,
 }
 
 const Cards = ({ url, style }: Props) => {

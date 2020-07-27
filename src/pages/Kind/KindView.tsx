@@ -5,9 +5,10 @@ import Cards from "../../components/Cards";
 
 interface Props {
 	urlList: Array<QueryDocumentSnapshot> | undefined,
+	onEndPage: () => void,
 }
 
-const KindView = ({urlList}: Props) => {
+const KindView = ({urlList, onEndPage}: Props) => {
 
 	const renderBody = (images: Array<QueryDocumentSnapshot> | undefined) => {
 		if (images != undefined) {
@@ -20,8 +21,15 @@ const KindView = ({urlList}: Props) => {
 		return null;
 	};
 
+	const onHandleScroll = (e: React.UIEvent<HTMLElement>) => {
+		const event = e.target as HTMLElement;
+		if (event.scrollHeight - event.scrollTop === event.clientHeight) {
+			onEndPage();
+		}
+	};
+
 	return(
-		<ScrollView>
+		<ScrollView onScroll={onHandleScroll}>
 			{renderBody(urlList)}
 		</ScrollView>
 	);
