@@ -9,7 +9,6 @@ interface Props {
 }
 
 const KindView = ({urlList, onEndPage}: Props) => {
-
 	const renderBody = (images: Array<QueryDocumentSnapshot> | undefined) => {
 		if (images != undefined) {
 			return images.map((querySnapshot) => (

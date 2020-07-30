@@ -10,13 +10,12 @@ import male from "../../assets/mars.svg";
 import heart from "../../assets/heart.svg"
 import GalleryController from "../pages/Gallery/GalleryController";
 import FavoritesView from "../pages/Favorites/FavoritesView";
-import Male from "../pages/Kind/Male";
-import Pairings from "../pages/Kind/Pairings";
+import MaleController from "../pages/Kind/MaleController";
+import PairingsController from "../pages/Kind/PairingsController";
 import FeedController from "../pages/ImageFeed/FeedController";
-import Female from "../pages/Kind/Female";
+import FemaleController from "../pages/Kind/FemaleController";
 
 const MenuPanel = () => {
-
 	const { push } = useHistory();
 	const [isOpen, setOpen] = useState(false);
 	const onPressButton = () => {
@@ -64,13 +63,13 @@ const MenuPanel = () => {
 					<GalleryController />
 				</Route>
 				<Route exact path="/female">
-					<Female />
+					<FemaleController />
 				</Route>
 				<Route exact path="/male">
-					<Male />
+					<MaleController />
 				</Route>
 				<Route exact path="/pairings">
-					<Pairings />
+					<PairingsController />
 				</Route>
 				<Route path="/favorites">
 					<FavoritesView />

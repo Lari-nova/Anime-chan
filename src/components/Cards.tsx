@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 interface Props {
@@ -22,11 +22,9 @@ const Cards = ({ url, style }: Props) => {
 		return () => imgRef.current?.removeEventListener("load", loadListener)
 	});
 
-
 	return(
 		<ImageStyle style={{gridRowEnd: `span ${spans}`, ...style}} ref={imgRef} src={url} />
 	);
-
 };
 
 const ImageStyle = styled.img`

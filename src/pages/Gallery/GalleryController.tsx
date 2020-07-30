@@ -4,7 +4,6 @@ import { firestore } from '../../components/App';
 import GalleryViewMemo from "./GalleryView";
 
 const GalleryController = () => {
-
 	const [imagesList, setImages] = useState<Array<QueryDocumentSnapshot>>();
 
 	useEffect(() => {

@@ -14,6 +14,7 @@ const CardTypes = ({ url, type, handleClick }: Props) => {
 		</CardStyle>
 	)
 };
+
 const CardStyle = styled.div`
   width: 100%;
  	height: 200px;

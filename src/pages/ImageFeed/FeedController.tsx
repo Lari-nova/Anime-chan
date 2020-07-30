@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { firestore } from "../../components/App";
 import FeedView from "./FeedView";
-import {QueryDocumentSnapshot, QuerySnapshot} from "@firebase/firestore-types";
+import { QueryDocumentSnapshot, QuerySnapshot } from "@firebase/firestore-types";
 
 const FeedController = () => {
 	const [currentId, setCurrentId] = useState(0);
@@ -11,7 +11,7 @@ const FeedController = () => {
 
 	useEffect(() => {
 		firestore.collection("images")
-			.orderBy("id")
+			.orderBy("id", "desc")
 			.limit(10)
 			.get()
 			.then((documentSnapshots) => {

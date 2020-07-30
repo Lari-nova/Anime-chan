@@ -1,9 +1,10 @@
-import React from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import firebase from "firebase";
 import styled from "styled-components";
 import image from "../../assets/galleryBackground.png";
 import MenuPanel from "./MenuPanel";
+import { QueryDocumentSnapshot } from "@firebase/firestore-types";
 
 const firebaseConfig = {
 	apiKey: "AIzaSyAEybk5IYJbjkh0m_1dMEKZ2cfQsumpdh0",
@@ -19,11 +20,25 @@ const firebaseConfig = {
 const firebaseInstance = firebase.initializeApp(firebaseConfig);
 export const firestore = firebaseInstance.firestore();
 
+export type GlobalState = {
+	female?: Array<QueryDocumentSnapshot>,
+	male?: Array<QueryDocumentSnapshot>,
+	pairings?: Array<QueryDocumentSnapshot>
+}
+
+type AppContextType = [GlobalState | undefined, Dispatch<SetStateAction<GlobalState | undefined>>]
+
+export const AppContext = React.createContext<AppContextType>([undefined, () => {}]);
+
 const App = () => {
+	const [globalState, setGlobalState] = useState<GlobalState>();
+
 	return(
 		<Router>
 			<MainComponent>
-				<MenuPanel />
+				<AppContext.Provider value={[globalState, setGlobalState]}>
+					<MenuPanel />
+				</AppContext.Provider>
 			</MainComponent>
 		</Router>
 	);

@@ -6,11 +6,9 @@ import Cards from "../../components/Cards";
 interface Props {
 	documentList: Array<QueryDocumentSnapshot> | undefined,
 	onEndPage: () => void,
-
 }
 
 const FeedView = ({documentList, onEndPage}: Props) => {
-
 	const renderBody = (images: Array<QueryDocumentSnapshot> | undefined) => {
 		if (images != undefined) {
 			return images.map((querySnapshot) => (
@@ -19,6 +17,7 @@ const FeedView = ({documentList, onEndPage}: Props) => {
 		}
 		return null;
 	};
+
 	const onHandleScroll = (e: React.UIEvent<HTMLElement>) => {
 		const event = e.target as HTMLElement;
 		if (event.scrollHeight - event.scrollTop === event.clientHeight) {
