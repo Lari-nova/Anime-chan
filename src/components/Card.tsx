@@ -1,12 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
+import {
+	BrowserRouter as Router,
+	Link,
+	useHistory,
+	useLocation,
+	useParams
+} from "react-router-dom";
 import styled from "styled-components";
 
 interface Props {
 	url: string,
 	style?: React.CSSProperties,
+	handleClick: (url: string) => void,
 }
 
-const Cards = ({ url, style }: Props) => {
+const Card = ({ url, style, handleClick}: Props) => {
 	const [spans, setSpans] = useState<number>(0);
 	const imgRef = useRef<HTMLImageElement | null>(null);
 
@@ -23,7 +31,7 @@ const Cards = ({ url, style }: Props) => {
 	});
 
 	return(
-		<ImageStyle style={{gridRowEnd: `span ${spans}`, ...style}} ref={imgRef} src={url} />
+		<ImageStyle style={{gridRowEnd: `span ${spans}`, ...style}} ref={imgRef} src={url} onClick={() => handleClick(url)}/>
 	);
 };
 
@@ -42,4 +50,4 @@ const ImageStyle = styled.img`
   cursor: pointer;
 `;
 
-export default Cards;
+export default Card;

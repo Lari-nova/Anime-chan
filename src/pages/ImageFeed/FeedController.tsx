@@ -11,7 +11,7 @@ const FeedController = () => {
 
 	useEffect(() => {
 		firestore.collection("images")
-			.orderBy("id", "desc")
+			.orderBy("id")
 			.limit(10)
 			.get()
 			.then((documentSnapshots) => {

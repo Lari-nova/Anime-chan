@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { QueryDocumentSnapshot } from "@firebase/firestore-types";
+import { useLocation, useHistory } from "react-router-dom";
 import KindView from "./KindView";
 import useKindImages, { KindResponse } from "../../hooks/useKindImages";
 
@@ -9,6 +10,9 @@ const FemaleController = () => {
 	const [visibleList, setVisibleList] = useState<Array<QueryDocumentSnapshot>>();
 	const [currentIndex, setCurrentIndex] = useState<number>(BATCH_SIZE);
 	const imageKind: KindResponse = useKindImages("female");
+	const location = useLocation();
+	const history = useHistory();
+	let url = "hello";
 
 	useEffect(() => {
 		if (imageKind) {
@@ -28,8 +32,16 @@ const FemaleController = () => {
 		}
 	};
 
+	const openModal = (url: string) => {
+		let buff = new Buffer(url);
+		history.push({
+			pathname: `/img/${buff.toString('base64')}`,
+			state: { background: location }
+		})
+	};
+
 	return(
-		<KindView urlList={visibleList} onEndPage={nextPage}/>
+		<KindView urlList={visibleList} onEndPage={nextPage} onCardClick={openModal} />
 	)
 };
 

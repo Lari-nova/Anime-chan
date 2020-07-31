@@ -1,19 +1,28 @@
 import React from "react";
 import styled from "styled-components";
 import { QueryDocumentSnapshot } from "@firebase/firestore-types";
-import Cards from "../../components/Cards";
+import Card from "../../components/Card";
+import {
+	BrowserRouter as Router,
+	Link,
+	useHistory,
+	useLocation,
+	useParams
+} from "react-router-dom";
+import Modal from "../../components/Modal";
 
 interface Props {
 	urlList: Array<QueryDocumentSnapshot> | undefined,
 	onEndPage: () => void,
+	onCardClick: (url: string) => void,
 }
 
-const KindView = ({urlList, onEndPage}: Props) => {
+const KindView = ({urlList, onEndPage, onCardClick}: Props) => {
 	const renderBody = (images: Array<QueryDocumentSnapshot> | undefined) => {
 		if (images != undefined) {
 			return images.map((querySnapshot) => (
 				<CardContainer key={querySnapshot.data().url}>
-					<Cards url={querySnapshot.data().url}/>
+					<Card url={querySnapshot.data().url} handleClick={onCardClick}/>
 				</CardContainer>
 			))
 		}

@@ -29,7 +29,7 @@ const MaleController = () => {
 	};
 
 	return(
-		<KindView urlList={visibleList} onEndPage={nextPage}/>
+		<KindView urlList={visibleList} onEndPage={nextPage} onCardClick={alert}/>
 	)
 };
 

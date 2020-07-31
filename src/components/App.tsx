@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import firebase from "firebase";
 import styled from "styled-components";
 import image from "../../assets/galleryBackground.png";
-import MenuPanel from "./MenuPanel";
+import MenuNavigation from "./MenuNavigation";
 import { QueryDocumentSnapshot } from "@firebase/firestore-types";
 
 const firebaseConfig = {
@@ -37,7 +37,7 @@ const App = () => {
 		<Router>
 			<MainComponent>
 				<AppContext.Provider value={[globalState, setGlobalState]}>
-					<MenuPanel />
+					<MenuNavigation />
 				</AppContext.Provider>
 			</MainComponent>
 		</Router>

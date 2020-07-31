@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { QueryDocumentSnapshot } from "@firebase/firestore-types";
-import Cards from "../../components/Cards";
+import Cards from "../../components/Card";
 
 interface Props {
 	documentList: Array<QueryDocumentSnapshot> | undefined,
