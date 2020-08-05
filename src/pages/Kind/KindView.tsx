@@ -2,14 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { QueryDocumentSnapshot } from "@firebase/firestore-types";
 import Card from "../../components/Card";
-import {
-	BrowserRouter as Router,
-	Link,
-	useHistory,
-	useLocation,
-	useParams
-} from "react-router-dom";
-import Modal from "../../components/Modal";
 
 interface Props {
 	urlList: Array<QueryDocumentSnapshot> | undefined,

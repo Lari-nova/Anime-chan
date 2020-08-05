@@ -6,7 +6,7 @@ import gallery from "../../assets/gallery.svg";
 import female from "../../assets/venus.svg";
 import male from "../../assets/mars.svg";
 import heart from "../../assets/heart.svg";
-import favorite from "../../assets/stars.svg";
+import favorite from "../../assets/favorites.svg";
 import next from "../../assets/next.svg";
 
 const Panel = () => {

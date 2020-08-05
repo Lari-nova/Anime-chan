@@ -1,11 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-	BrowserRouter as Router,
-	Link,
-	useHistory,
-	useLocation,
-	useParams
-} from "react-router-dom";
 import styled from "styled-components";
 
 interface Props {

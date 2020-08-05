@@ -12,6 +12,7 @@ const FeedView = ({documentList, onEndPage}: Props) => {
 	const renderBody = (images: Array<QueryDocumentSnapshot> | undefined) => {
 		if (images != undefined) {
 			return images.map((querySnapshot) => (
+				// @ts-ignore
 					<Cards url={querySnapshot.data().url} style={{marginTop: 10}}/>
 			))
 		}
