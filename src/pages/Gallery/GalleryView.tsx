@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import styled from "styled-components";
 import CardTypes from "../../components/CardTypes";
 import { QueryDocumentSnapshot } from "@firebase/firestore-types";
+import { ScrollView } from "../../styles/StyleComponents";
 
 interface Props {
 	imagesList: Array<QueryDocumentSnapshot> | undefined,
@@ -32,16 +33,6 @@ const GalleryView = ({imagesList, onTypeClick}: Props) => {
 		</ScrollView>
 	);
 };
-
-const ScrollView = styled.div`
-  margin: 0 auto;
-  height: 100vh;
-  width: 100vw;
-  overflow: auto;
-  display: flex;
-  align-items: center; 
-  flex-direction: column;
-`;
 
 const Row = styled.div`
 	width: 1400px;

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { QueryDocumentSnapshot } from "@firebase/firestore-types";
 import Cards from "../../components/Card";
+import { ScrollView } from "../../styles/StyleComponents";
 
 interface Props {
 	documentList: Array<QueryDocumentSnapshot> | undefined,
@@ -34,15 +35,6 @@ const FeedView = ({documentList, onEndPage}: Props) => {
 		</ScrollView>
 	);
 };
-
-const ScrollView = styled.div`
-  height: 100vh;
-  width: 100vw;
-  overflow: auto;
-  display: flex;
-  align-items: center; 
-  flex-direction: column;
-`;
 
 const CardContainer = styled.div`
   display: grid;

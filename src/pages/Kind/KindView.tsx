@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { QueryDocumentSnapshot } from "@firebase/firestore-types";
 import Card from "../../components/Card";
+import { ScrollView } from "../../styles/StyleComponents";
 
 interface Props {
 	urlList: Array<QueryDocumentSnapshot> | undefined,
@@ -35,15 +36,6 @@ const KindView = ({urlList, onEndPage, onCardClick}: Props) => {
 	);
 };
 
-const ScrollView = styled.div`
-	margin: 0 auto;
-  height: 100vh;
-  width: 100vw;
-  overflow: auto;
-  display: flex;
-  align-items: center; 
-  flex-direction: column;
-`;
 
 const CardContainer = styled.div`
 	padding: 30px;

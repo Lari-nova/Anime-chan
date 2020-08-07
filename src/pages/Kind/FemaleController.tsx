@@ -12,7 +12,6 @@ const FemaleController = () => {
 	const imageKind: KindResponse = useKindImages("female");
 	const location = useLocation();
 	const history = useHistory();
-	let url = "hello";
 
 	useEffect(() => {
 		if (imageKind) {

@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import { CardStyle, ImageCardType } from "../styles/StyleComponents";
 
 interface Props {
 	url: string,
@@ -10,35 +10,9 @@ interface Props {
 const CardTypes = ({ url, type, handleClick }: Props) => {
 	return(
 		<CardStyle onClick={() => handleClick(type)}>
-			<ImageStyle imgUrl={url} />
+			<ImageCardType imgUrl={url} />
 		</CardStyle>
 	)
 };
-
-const CardStyle = styled.div`
-  width: 100%;
- 	height: 200px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  border-radius: 8px;
-  overflow: hidden;
-  transition: .5s;
-  &:hover {
-     box-shadow: 0 0 15px rgba(0, 0, 0, 1);
-  }
-  object-fit: cover;
-  cursor: pointer;
-`;
-
-const ImageStyle = styled.img<{imgUrl: string}>`
- 	width: 100%;
- 	height: 100%;
-  background: url(${props => props.imgUrl})no-repeat center center;
-  background-size: cover;
-  transform: scale(1.01);
-  transition: transform 1s ease;
-    &:hover {
-    transform: scale(1.05);
-  }
-`;
 
 export default CardTypes;
