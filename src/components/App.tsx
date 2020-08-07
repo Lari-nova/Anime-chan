@@ -1,8 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import firebase from "firebase";
-import styled from "styled-components";
-import image from "../../assets/galleryBackground.png";
 import MenuNavigation from "./MenuNavigation";
 import { QueryDocumentSnapshot } from "@firebase/firestore-types";
 import { MainComponent } from "../styles/StyleComponents";
