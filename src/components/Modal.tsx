@@ -15,7 +15,7 @@ const Modal = () => {
 	let buff = new Buffer(url, "base64");
 	let history = useHistory();
 	let encodingUrl = buff.toString('ascii');
-	const [srcButton, setSrcButton] = useState(stars_no_added);
+	const [isFavorite, setIsFavorite] = useState(false);
 
 	useEffect(() => {
 		const storage = localStorage.getItem(FAVORITE_KEY);
@@ -23,7 +23,7 @@ const Modal = () => {
 			const newArray = JSON.parse(storage);
 			const image = newArray.find(image => image === encodingUrl);
 			if (image) {
-				setSrcButton(stars_added);
+				setIsFavorite(true);
 			}
 		}
 	}, []);
@@ -39,32 +39,31 @@ const Modal = () => {
 			const urlsArray: string[] = [];
 			urlsArray.push(encodingUrl);
 			localStorage.setItem(FAVORITE_KEY, JSON.stringify(urlsArray));
+			setIsFavorite(true);
 		} else {
 			const newArray = JSON.parse(array);
 			const image = newArray.find(image => image === encodingUrl);
-			if (!image) {
-				setSrcButton(stars_added);
+			if (image) {
+				setIsFavorite(false);
+				const array = newArray.filter(item => item !== encodingUrl);
+				localStorage.setItem(FAVORITE_KEY, JSON.stringify(array));
+			} else {
+				setIsFavorite(true);
 				newArray.push(encodingUrl);
 				localStorage.setItem(FAVORITE_KEY, JSON.stringify(newArray));
 			}
 		}
 	};
 
-	const onClickDownload = () => {
-		alert("Downloading")
-	};
-
-
-
 	return(
 		<Background>
       <ModalStyle>
-        <Image src={encodingUrl} />
+		      <Image src={encodingUrl} />
       </ModalStyle>
 			<IconContainer>
-				<IconButton src={srcButton} onClick={onClickFavorite}/>
+				<IconButton src={isFavorite ? stars_added : stars_no_added} onClick={onClickFavorite}/>
 				<IconButton src={close} onClick={back}/>
-				<IconButton src={download} onClick={onClickDownload}/>
+				<IconButton src={download} />
 			</IconContainer>
 		</Background>
 	)
