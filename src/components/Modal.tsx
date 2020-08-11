@@ -55,6 +55,16 @@ const Modal = () => {
 		}
 	};
 
+	const onClickDownload = () => {
+		fetch(encodingUrl).then((response) => response.blob()).then((blob) => {
+			const a = document.createElement('a');
+			a.href = URL.createObjectURL(blob);
+			a.download = "image.jpg";
+			a.click();
+			URL.revokeObjectURL(a.href)
+		})
+	};
+
 	return(
 		<Background>
       <ModalStyle>
@@ -63,7 +73,7 @@ const Modal = () => {
 			<IconContainer>
 				<IconButton src={isFavorite ? stars_added : stars_no_added} onClick={onClickFavorite}/>
 				<IconButton src={close} onClick={back}/>
-				<IconButton src={download} />
+				<IconButton src={download} onClick={onClickDownload}/>
 			</IconContainer>
 		</Background>
 	)

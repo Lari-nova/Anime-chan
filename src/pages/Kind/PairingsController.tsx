@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { QueryDocumentSnapshot } from "@firebase/firestore-types";
 import KindView from "./KindView";
+import { useLocation, useHistory } from "react-router-dom";
 import useKindImages, { KindResponse } from "../../hooks/useKindImages";
 
 const BATCH_SIZE = 10;
@@ -9,6 +10,8 @@ const PairingsController = () => {
 	const [visibleList, setVisibleList] = useState<Array<QueryDocumentSnapshot>>();
 	const [currentIndex, setCurrentIndex] = useState<number>(BATCH_SIZE);
 	const imageKind: KindResponse = useKindImages("otp");
+	const location = useLocation();
+	const history = useHistory();
 
 	useEffect(() => {
 		if (imageKind) {
@@ -28,8 +31,16 @@ const PairingsController = () => {
 		}
 	};
 
+	const openModal = (url: string) => {
+		let buff = new Buffer(url);
+		history.push({
+			pathname: `/img/${buff.toString('base64')}`,
+			state: { background: location }
+		})
+	};
+
 	return(
-		<KindView urlList={visibleList} onEndPage={nextPage} onCardClick={alert}/>
+		<KindView urlList={visibleList} onEndPage={nextPage} onCardClick={openModal} />
 	)
 };
 
