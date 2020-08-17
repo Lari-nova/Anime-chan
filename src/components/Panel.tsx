@@ -61,7 +61,7 @@ const LeftPanel = styled.div<{open: boolean}>`
 	display: flex;
   flex-direction: column;
   position: fixed;
-  z-index: 1;
+  z-index: 3;
   overflow-x: hidden;
   ${props => props.open ? css`width: 180px;` : css`width: 50px;`}
 `;

@@ -14,9 +14,7 @@ const GalleryView = ({imagesList, onTypeClick}: Props) => {
 		if (images != undefined) {
 			return images.map((querySnapshot) => (
 				<CardContainer key={querySnapshot.data().img_url}>
-					<CardTypes url={querySnapshot.data().img_url} type={querySnapshot.data().type} handleClick={(type) => {
-						alert(type);
-					}}/>
+					<CardTypes url={querySnapshot.data().img_url} type={querySnapshot.data().type} handleClick={onTypeClick} />
 				</CardContainer>
 			))
 		}

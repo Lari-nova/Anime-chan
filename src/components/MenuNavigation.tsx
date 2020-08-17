@@ -10,6 +10,7 @@ import Panel from "./Panel";
 import Modal from "./Modal";
 import ImagePage from "../pages/Views/ImagePage";
 import FavoritesController from "../pages/Favorites/FavoritesController";
+import AnimeController from "../pages/AnimePage/AnimeController";
 
 const MenuNavigation = () => {
 	const location = useLocation();
